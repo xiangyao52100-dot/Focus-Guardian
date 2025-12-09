@@ -19,7 +19,5 @@ View your app in AI Studio: https://ai.studio/apps/drive/1hCT7jgwGYtj8JNucHJtfuP
 3. Run the app:
    `npm run dev`
 
-
-
    update deploy
 
