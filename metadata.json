@@ -1,0 +1,7 @@
+{
+  "name": "Focus Guardian",
+  "description": "An AI-powered study companion that monitors your focus using your webcam. It rewards you for studying and warns you when you get distracted.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
