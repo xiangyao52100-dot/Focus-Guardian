@@ -1,17 +1,22 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { AnalysisResult, StudyStatus } from "../types";
 
-// Helper to safely get API key without crashing in environments where 'process' is undefined
+// Helper to safely get API key in a Vite + browser environment
 const getApiKey = () => {
-  try {
-    return typeof process !== 'undefined' ? process.env.API_KEY : undefined;
-  } catch (e) {
-    console.warn("process.env is not accessible. API calls will fail unless configured in build.");
-    return undefined;
+  // Vite 会在构建时把这个变量替换成真实值
+  const key = import.meta.env.VITE_GEMINI_API_KEY as string | undefined;
+
+  if (!key) {
+    console.warn(
+      "VITE_GEMINI_API_KEY is not set. API calls will fail on Vercel unless you configure this env var."
+    );
   }
+
+  return key;
 };
 
 const ai = new GoogleGenAI({ apiKey: getApiKey() });
+
 
 const responseSchema: Schema = {
   type: Type.OBJECT,
